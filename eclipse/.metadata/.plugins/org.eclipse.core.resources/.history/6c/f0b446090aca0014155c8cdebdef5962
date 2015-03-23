@@ -1,0 +1,67 @@
+package com.sa;
+
+import java.io.File;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Item;
+
+import org.apache.logging.log4j.Logger;
+
+import com.sa.Enchantments.EnchantmentShadowsBane;
+import com.sa.Events.KeyInputHandler;
+import com.sa.Items.MagicalBook;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+@Mod(modid = SignificantAdvancements.MODID, version = SignificantAdvancements.VERSION, name = SignificantAdvancements.NAME)
+public class SignificantAdvancements
+{
+    public static final String MODID = "sa";
+    public static final String NAME = "Significant Advancements";
+    public static final String VERSION = "0.0.1";
+    
+    @SidedProxy(clientSide = "com.sa.ClientProxy", serverSide = "com.sa.CommonProxy")
+    public CommonProxy proxy;
+    
+    public static File dataFolder;
+    
+    public static Item magicalBook;
+    
+    public static Enchantment shadowsBane;
+    
+    public static Logger log;
+    
+    @EventHandler
+    public void preinit(FMLPreInitializationEvent event){
+    	LangRegistry.retrieveEntries();
+    	
+    	event.getModLog().info("[Significant Advancements] " + LangRegistry.langEntries.get("log.preinit.text"));
+    	dataFolder = event.getModConfigurationDirectory();
+    	
+    	log = event.getModLog();
+    	
+    	magicalBook = new MagicalBook("item.magicalBook.name", 1, MODID + ":magicalBook");
+    	
+    	shadowsBane = new EnchantmentShadowsBane(100, 10);
+    }
+    
+    @EventHandler
+    public void init(FMLInitializationEvent event){
+    	log.info("[Significant Advancements] " + LangRegistry.langEntries.get("log.init.text"));
+    	GameRegistry.registerItem(magicalBook, magicalBook.getUnlocalizedName(), MODID);
+    	
+    	FMLCommonHandler.instance().bus().register(new KeyInputHandler());
+    }
+    
+    @EventHandler
+    public void postinit(FMLPostInitializationEvent event){
+    	log.info("[Significant Advancements] " + LangRegistry.langEntries.get("log.postinit.text"));
+    }
+}

@@ -1,0 +1,17 @@
+package com.sa.Utils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+
+public class PlayerUtils {
+
+	public Map<String, String> playersStarted = new HashMap<String, String>();
+	
+	public static void startPlayer(EntityPlayer player){
+		String dir = ""
+		
+		if (IOUtil.dirExists(dir))
+	}
+}

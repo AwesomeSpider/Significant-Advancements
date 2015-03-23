@@ -1,0 +1,5 @@
+package awesomespider.significantAdvancements.Utils;
+
+public class ExceptionUtil {
+
+}

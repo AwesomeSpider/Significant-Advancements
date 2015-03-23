@@ -1,0 +1,19 @@
+package com.sa.Utils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.sa.SignificantAdvancements;
+
+import net.minecraft.entity.player.EntityPlayer;
+
+public class PlayerUtils {
+
+	public Map<String, String> playersStarted = new HashMap<String, String>();
+	
+	public static void startPlayer(EntityPlayer player){
+		File dir = new File(SignificantAdvancements.dataFolder, "Player Data");
+		
+		if (IOUtil.dirExists(dir))
+	}
+}

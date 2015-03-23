@@ -1,0 +1,8 @@
+package awsomespider.significantAdvancements;
+
+public class CommonProxy {
+
+	public void registerRenderers(){
+		
+	}
+}

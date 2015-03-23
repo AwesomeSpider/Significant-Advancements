@@ -1,0 +1,39 @@
+package awesomespider.significantAdvancements.Items;
+
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+import awesomespider.significantAdvancements.SignificantAdvancements;
+
+public class MagicalBook extends Item {
+
+	public MagicalBook(String name, int maxStackSize, String textureName){
+		setUnlocalizedName(name);
+		setMaxStackSize(maxStackSize);
+		setTextureName(textureName);
+	}
+	
+	@Override
+	public void onCreated(ItemStack item, World world, EntityPlayer player){
+		if (item.stackTagCompound != null){
+			item.stackTagCompound.setString("user", player.getDisplayName());
+		} else {
+			SignificantAdvancements.log.error("[Significant Avancements] A MagicalBook (Lexicon of Knowledge) created by player '" + player.getDisplayName() + "' "
+												+ "does not have a valid stackTagCompound, "
+												+ "repairing and performing the interupted task...");
+			item.stackTagCompound = new NBTTagCompound();
+			
+			item.stackTagCompound.setString("user", player.getDisplayName());
+		}
+	}
+	
+	@Override
+	public void addInformation(ItemStack item, EntityPlayer player, List par3List, boolean par4){
+		par3List.add(EnumChatFormatting.GREEN + "user:" + item.stackTagCompound.getString("user"));
+	}
+}

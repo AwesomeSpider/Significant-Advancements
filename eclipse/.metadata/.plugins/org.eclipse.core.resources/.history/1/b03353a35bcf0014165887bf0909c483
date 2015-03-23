@@ -1,0 +1,20 @@
+package awesomespider.significantAdvancements.Utils;
+
+public class ExceptionUtil {
+
+	public String[] errorCodes = new String[]{
+		"SAException-EMDIDx001",
+		"SAException-EMDMDx002"
+	};
+	
+	/**
+	 * Gets the recommended error message to send for an EMDID error (External Mod Dismantler Item Duplicate).
+	 * @param modid - The mod causing the problem.
+	 * @return The recommended error message.
+	 * @since Version 0.0.1 - Granite
+	 */
+	public static String getErrorMessageEMDID(String modid){
+		return modid;
+		
+	}
+}

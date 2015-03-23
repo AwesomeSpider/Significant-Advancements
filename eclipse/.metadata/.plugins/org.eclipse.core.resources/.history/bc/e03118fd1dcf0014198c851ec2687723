@@ -1,0 +1,5 @@
+package awesomespider.significantAdvancements.Events;
+
+public class KeyInputHandler {
+
+}

@@ -1,0 +1,7 @@
+package awesomespider.significantAdvancements;
+
+import java.lang.Exception;
+
+public class SAException extends Exception {
+
+}

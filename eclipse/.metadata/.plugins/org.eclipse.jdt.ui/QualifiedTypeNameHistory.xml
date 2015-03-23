@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.sa.SignificantAdvancments"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.client.registry.RenderingRegistry"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="com.sa.SignificantAdvancements"/>
+<fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
+<fullyQualifiedTypeName name="net.minecraft.util.IChatComponent"/>
+<fullyQualifiedTypeName name="net.minecraft.util.ChatComponentText"/>
+<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemMap"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.passive.EntityOcelot"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.ai.EntityAIOpenDoor"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.client.registry.ClientRegistry"/>
+<fullyQualifiedTypeName name="com.sa.KeyBindings"/>
+<fullyQualifiedTypeName name="com.sa.Mechanics.Dismantler"/>
+<fullyQualifiedTypeName name="net.minecraftforge.common.config.Configuration"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.eventhandler.SubscribeEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.gameevent.InputEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent"/>
+<fullyQualifiedTypeName name="awesomespider.significantAdvancements.KeyBindings"/>
+<fullyQualifiedTypeName name="awesomespider.significantAdvancements.Utils.PlayerUtils"/>
+<fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Items"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+<fullyQualifiedTypeName name="awesomespider.significantAdvancements.SAException"/>
+<fullyQualifiedTypeName name="awesomespider.significantAdvancements.SignificantAdvancements"/>
+<fullyQualifiedTypeName name="awesomespider.significantAdvancements.Utils.ExceptionUtil"/>
+</qualifiedTypeNameHistroy>

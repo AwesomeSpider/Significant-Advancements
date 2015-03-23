@@ -1,0 +1,22 @@
+package awsomespider.significantAdvancements;
+
+import net.minecraft.client.settings.KeyBinding;
+
+import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+
+public class KeyBindings {
+
+    public static KeyBinding start;
+    public static KeyBinding openDimantler;
+    
+    public static void init() {
+        start = new KeyBinding("key.start", Keyboard.KEY_R, "key.categories.sa");
+        openDimantler = new KeyBinding("key.dismantler", Keyboard.KEY_F, "key.categories.sa");
+
+        ClientRegistry.registerKeyBinding(start);
+        ClientRegistry.registerKeyBinding(openDimantler);
+    }
+
+}

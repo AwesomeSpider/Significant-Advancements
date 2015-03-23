@@ -1,0 +1,215 @@
+package awesomespider.significantAdvancements.Mechanics;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Map;
+
+import awesomespider.significantAdvancements.SAException;
+import awesomespider.significantAdvancements.SignificantAdvancements;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+/**
+ * Dismantler System. 
+ * A rugged system that contains a list of items that can be dismantled for the items it's made of. 
+ * Items can be added from other mods as well as defaults from this mod. 
+ * The planned keymapping for this is likely to be "I", but this could change.
+ * © Awesome_Spider
+ * @author Awesome_Spider
+ */
+public class Dismantler {
+
+	/**
+	 * The list of items. Do not use unless you know what your doing.
+	 * You might screw something up.
+	 * Use the methods in this class instead. :) 
+	 */
+	public static Map<Item, ItemStack[]> itemMap = new HashMap<Item, ItemStack[]>();
+	
+	//public static Map<String, String> modidMap = new HashMap<String, String>();
+	
+	/**
+	 * Dismantle an item.
+	 * @param player - The player.
+	 * @param item - The ItemStack to be dimantled.
+	 * @return Whether it worked or not.
+	 */
+	public static boolean dismantle(EntityPlayer player, ItemStack item){
+		boolean result = false;
+		
+		int slot = 0;
+		
+		if (item.stackTagCompound != null){
+			for (int i = 0; i == 36; i ++){
+				if (player.inventory.getStackInSlot(i).equals(item)){
+					slot = i;
+				}
+			}
+			
+			if (slot != 0){
+				if (checkForItemInMap(item.getItem())){
+					player.inventory.decrStackSize(slot, player.inventory.getStackInSlot(slot).stackSize - 1);
+					
+					for (int i = 0; i == getItemFromMap(item.getItem()).length; i ++){
+						player.inventory.addItemStackToInventory(new ItemStack(GameRegistry.findItem(getModidFromMap(item.getItem()), getItemFromMap(item.getItem())[i])));
+					}
+				}
+			}
+			
+			result = true;
+		} else {
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Item could not be dismantled. Item has NBT. In future updates this might be possible, but now... not so much."));
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Checks for the specified item in the dismantler map. Part of the process of dismantling an item.
+	 * @param item - The item to check for.
+	 * @return Whether it's in there or not, obviously. :)
+	 */
+	public static boolean checkForItemInMap(Item item){
+		boolean result = false;
+		
+		String itemName = item.getUnlocalizedName();
+		
+		if (itemMap.containsKey(itemName)){
+			result = true;
+		} else {
+			result = false;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Retrieves the default items for this mod.
+	 * @throws SAException 
+	 */
+	public static void retrieve() throws SAException{
+		//TODO add some items to obliterate :).
+		
+		//Tools
+		
+			//Wood
+		addItemToDismantler(Items.wooden_axe, new String[]{
+			Items.stick.getUnlocalizedName(),
+			Items.stick.getUnlocalizedName(),
+			Blocks.planks.getUnlocalizedName(),
+			Blocks.planks.getUnlocalizedName(),
+			Blocks.planks.getUnlocalizedName()
+		}, "minecraft");
+		
+		addItemToDismantler(Items.wooden_shovel, new String[]{
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName()
+			}, "minecraft");
+		
+		addItemToDismantler(Items.wooden_pickaxe, new String[]{
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName()
+			}, "minecraft");
+		
+		addItemToDismantler(Items.wooden_hoe, new String[]{
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName(),
+				Blocks.planks.getUnlocalizedName()
+			}, "minecraft");
+		
+			//Stone
+		addItemToDismantler(Items.stone_axe, new String[]{
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Blocks.cobblestone.getUnlocalizedName(),
+				Blocks.cobblestone.getUnlocalizedName(),
+				Blocks.cobblestone.getUnlocalizedName()
+		}, "minecraft");
+	
+		addItemToDismantler(Items.stone_shovel, new String[]{
+			Items.stick.getUnlocalizedName(),
+			Items.stick.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName()
+		}, "minecraft");
+	
+		addItemToDismantler(Items.stone_pickaxe, new String[]{
+			Items.stick.getUnlocalizedName(),
+			Items.stick.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName()
+		}, "minecraft");
+	
+		addItemToDismantler(Items.stone_hoe, new String[]{
+			Items.stick.getUnlocalizedName(),
+			Items.stick.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName(),
+			Blocks.cobblestone.getUnlocalizedName()
+		}, "minecraft");
+		
+			//Misc
+		addItemToDismantler(Items.flint_and_steel, new String[]{
+				Items.flint.getUnlocalizedName(),
+				Items.iron_ingot.getUnlocalizedName()
+			}, "minecraft");
+		
+		addItemToDismantler(Items.fishing_rod, new String[]{
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Items.stick.getUnlocalizedName(),
+				Items.string.getUnlocalizedName(),
+				Items.string.getUnlocalizedName(),
+			}, "minecraft");
+		
+		addItemToDismantler(Items.carrot_on_a_stick, new String[]{
+				Items.fishing_rod.getUnlocalizedName(),
+				Items.carrot.getUnlocalizedName()
+			}, "minecraft");
+	}
+	
+	/**
+	 * Adds an item to the dismantler.
+	 * This can be used by other mods to add support for the dismantling system in Significant Advancements.
+	 * It adds your specified item (and what it breaks down to) into the mod. It takes 3 parameters.
+	 * The first is very simple, The item you are implementing. The second, a little more complicated.
+	 * This is the items it breaks down to. Stick all the unlocalized names of the items you want to make when this item is dismantled.
+	 * There is no limit, but you may want to keep it small as there may not be enough inventory space in the player. :) The third is just your modid.
+	 * @param item - The item.
+	 * @param names - The unlocalized names of the items it breaks down to.
+	 * @param modid -The modid of your mod.
+	 * @throws SAException 
+	 */
+	public static void addItemToDismantler(Item item, ItemStack[] results, String modid) throws SAException{
+		if (itemMap.containsKey(item)){
+			itemMap.put(item, results);
+		} else {
+			throw new SAException("An external mod added a duplicate dismantler item. " + SignificantAdvancements.EXCEPTIONTEXT + "Error code: 001");
+		}
+		
+		
+		modidMap.put(item.getUnlocalizedName(), modid);
+	}
+	
+	public static String[] getItemFromMap(Item item){
+		return itemMap.get(item.getUnlocalizedName());
+	}
+	
+	public static String getModidFromMap(Item item){
+		return modidMap.get(item.getUnlocalizedName());
+	}
+}

@@ -1,0 +1,5 @@
+package awesomespider.significantAdvancements;
+
+public class SAException {
+
+}
